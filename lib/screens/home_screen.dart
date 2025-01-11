@@ -84,6 +84,31 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home_outlined,
+                color: Colors.black,
+              ),
+              label: 'for you'),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.today_sharp,
+              ),
+              label: 'headline'),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.bookmark_outline,
+              ),
+              label: 'following'),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.star_purple500,
+              ),
+              label: 'sources'),
+        ],
+      ),
     );
   }
 }
