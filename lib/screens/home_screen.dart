@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:news_app/widgets/app_text.dart';
+import 'package:news_app/widgets/top_stories_section.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/';
@@ -40,37 +41,39 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: 12,
-          children: [
-            AppText(text: DateFormat('EEEE, MMMM d').format(DateTime.now())),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        padding: const EdgeInsets.all(20.0),
+        child: SingleChildScrollView(
+          child: SizedBox(
+            height: double.maxFinite,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 8,
               children: [
                 AppText(
-                  text: 'Top Stories',
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24,
+                    text: DateFormat('EEEE, MMMM d').format(DateTime.now())),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AppText(
+                      text: 'Top Stories',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                    ),
+                    AppText(
+                      text: 'See all',
+                      color: Colors.grey,
+                    )
+                  ],
                 ),
-                AppText(
-                  text: 'See all',
-                  color: Colors.grey,
-                )
+                SizedBox(
+                  height: 12,
+                ),
+                Expanded(
+                  child: TopStoriesSection(),
+                ),
               ],
             ),
-            SizedBox(
-              height: 12,
-            ),
-            Placeholder(),
-            AppText(text: 'sometechjournal.co'),
-            AppText(
-              text: 'Tech giant announces major investment in renewable enery',
-              fontWeight: FontWeight.bold,
-            ),
-            AppText(text: '3h ago')
-          ],
+          ),
         ),
       ),
     );
