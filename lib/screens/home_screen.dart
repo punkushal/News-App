@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:news_app/widgets/app_text.dart';
+import 'package:news_app/widgets/highlights_section.dart';
+import 'package:news_app/widgets/section_heading.dart';
 import 'package:news_app/widgets/top_stories_section.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: AppText(
@@ -40,41 +43,46 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: SingleChildScrollView(
-          child: SizedBox(
-            height: double.maxFinite,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: 8,
-              children: [
-                AppText(
-                    text: DateFormat('EEEE, MMMM d').format(DateTime.now())),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Column(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: 8,
                   children: [
                     AppText(
-                      text: 'Top Stories',
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24,
+                        text:
+                            DateFormat('EEEE, MMMM d').format(DateTime.now())),
+                    SectionHeading(sectionHeading: 'Top Stories'),
+                    SizedBox(
+                      height: 12,
                     ),
-                    AppText(
-                      text: 'See all',
-                      color: Colors.grey,
-                    )
+                    SizedBox(
+                      height: screenSize.height * 0.78,
+                      child: TopStoriesSection(),
+                    ),
+
+                    SizedBox(
+                      height: 12,
+                    ),
+                    //Highlights section
+                    SectionHeading(sectionHeading: 'Highlights'),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      height: screenSize.height * 0.35,
+                      child: HighlightsSection(),
+                    ),
                   ],
                 ),
-                SizedBox(
-                  height: 12,
-                ),
-                Expanded(
-                  child: TopStoriesSection(),
-                ),
-              ],
+              ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }
