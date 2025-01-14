@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:news_app/widgets/app_text.dart';
 import 'package:news_app/widgets/highlights_section.dart';
@@ -27,7 +28,12 @@ class _HomeScreenState extends State<HomeScreen> {
           Icons.menu,
         ),
         actions: [
-          Icon(Icons.search),
+          IconButton(
+            onPressed: () {
+              context.goNamed('search');
+            },
+            icon: Icon(Icons.search),
+          ),
           Container(
             width: 42,
             height: 42,
